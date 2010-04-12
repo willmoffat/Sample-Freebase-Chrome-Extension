@@ -1,0 +1,26 @@
+<html>
+<head>
+  <title>Is this used?</title>
+  <style>
+  body { margin: 15px; min-width:300px; min-height:550px;}
+  #dev { display:none; position:absolute; top:0.5em; right:0.5em; z-index:1000;}
+  #tagThisPage { display:none; margin-left:-10px; }
+  </style>
+  <link type="text/css" rel="stylesheet" href="http://freebaselibs.com/static/suggest/1.0.4/suggest.min.css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script> <!-- use .min -->
+  <script src="http://freebaselibs.com/static/suggest/1.0.4/suggest.min.js"></script>
+  <script src="popup.js"></script>
+</head>
+<body>
+  <div id="dev">
+    <button id="debug">Debug</button>
+    <button id="clear">Clear fbCache</button>
+  </div>
+
+  <div id="tagThisPage">
+    <label><input id="myinput" placeholder="tag with film, person, place" /></label>
+  </div>
+
+  <div id="output">Loading...</div>
+</body>
+</html>

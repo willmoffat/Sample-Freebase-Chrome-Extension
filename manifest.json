@@ -1,0 +1,16 @@
+{
+  "name": "Will Test",
+  "version":"1.0",
+  "description": "A sample Freebase extension for Chrome. Lookup the current url in Freebase and show TopicBlocks if available.",
+  "permissions": [
+    "tabs",
+    "http://www.freebase.com/",
+    "http://search.labs.freebase.com/"
+  ],
+  "background_page": "background.html",
+  "browser_action":{
+    "default_icon":"favicon.ico",
+    "default_title":"Freebase Topic Blocks",
+    "popup":"popup.html"
+  }
+}

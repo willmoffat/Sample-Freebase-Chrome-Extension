@@ -1,0 +1,38 @@
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script> <!-- TODO: switch to .min -->
+<script src="freebase.js"></script>
+<script>
+
+function setIconEnabled(enabled,tabId) {
+  var image = 'favicon' + (enabled?'':'-gray') + '.ico';
+  chrome.browserAction.setIcon( {path:image, tabId:tabId} );
+}
+
+function updateBadge(tab) {
+  fbCache.get(tab.url,function(topic) {
+    var badge = topic ? '1' : '0';
+    chrome.browserAction.setBadgeText({ text:badge, tabId:tab.id });
+  });
+}
+
+function setCurrentTopic(topic,callback) {
+  chrome.tabs.getSelected(null, function(tab) {
+    fbCache.set(tab.url,topic);
+    updateBadge(tab);
+    callback();
+  });
+}
+
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) { 
+  if (tab.url.indexOf('http://') !== 0) {
+    setIconEnabled(false, tab.id);
+  } else {
+    setIconEnabled(true,tab.id);
+    if (changeInfo.status == "loading" && changeInfo.url) {
+      updateBadge(tab); // force fbCache to be updated if this is a new url
+    }
+  }
+}); 
+
+</script>
+</html>
